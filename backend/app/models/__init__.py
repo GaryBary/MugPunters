@@ -1,5 +1,5 @@
 from .user import User
-from .stock import Stock, FinancialMetrics, TechnicalAnalysis, HistoricalData
+from .stock import Stock, FinancialMetrics, TechnicalAnalysis, HistoricalData, StockData
 from .investment import InvestmentReport, Watchlist, WatchlistStock, Portfolio, PortfolioHolding
 
 __all__ = [
@@ -8,6 +8,7 @@ __all__ = [
     "FinancialMetrics", 
     "TechnicalAnalysis",
     "HistoricalData",
+    "StockData",
     "InvestmentReport",
     "Watchlist",
     "WatchlistStock", 

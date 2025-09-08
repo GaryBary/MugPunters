@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Float, Integer, DateTime, Text, Enum
+from sqlalchemy import Column, String, Float, Integer, DateTime, Text, Enum, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
@@ -37,7 +37,7 @@ class FinancialMetrics(Base):
     __tablename__ = "financial_metrics"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    stock_id = Column(UUID(as_uuid=True), nullable=False)
+    stock_id = Column(UUID(as_uuid=True), ForeignKey("stocks.id"), nullable=False)
     pe_ratio = Column(Float, nullable=True)
     pb_ratio = Column(Float, nullable=True)
     debt_to_equity = Column(Float, nullable=True)
@@ -62,7 +62,7 @@ class TechnicalAnalysis(Base):
     __tablename__ = "technical_analysis"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    stock_id = Column(UUID(as_uuid=True), nullable=False)
+    stock_id = Column(UUID(as_uuid=True), ForeignKey("stocks.id"), nullable=False)
     sma_20 = Column(Float, nullable=True)  # Simple Moving Average 20
     sma_50 = Column(Float, nullable=True)  # Simple Moving Average 50
     sma_200 = Column(Float, nullable=True)  # Simple Moving Average 200
@@ -86,7 +86,7 @@ class HistoricalData(Base):
     __tablename__ = "historical_data"
 
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
-    stock_id = Column(UUID(as_uuid=True), nullable=False)
+    stock_id = Column(UUID(as_uuid=True), ForeignKey("stocks.id"), nullable=False)
     date = Column(DateTime(timezone=True), nullable=False)
     open_price = Column(Float, nullable=False)
     high_price = Column(Float, nullable=False)
@@ -97,3 +97,28 @@ class HistoricalData(Base):
     
     # Relationships
     stock = relationship("Stock", back_populates="historical_data")
+
+
+class StockData(Base):
+    """
+    Real-time stock data table for caching current prices and volumes.
+    """
+    __tablename__ = "stock_data"
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    stock_id = Column(UUID(as_uuid=True), ForeignKey("stocks.id"), nullable=False)
+    symbol = Column(String(10), nullable=False, index=True)
+    current_price = Column(Float, nullable=False)
+    previous_close = Column(Float, nullable=True)
+    change = Column(Float, nullable=True)
+    change_percent = Column(Float, nullable=True)
+    volume = Column(Integer, nullable=True)
+    high = Column(Float, nullable=True)
+    low = Column(Float, nullable=True)
+    open_price = Column(Float, nullable=True)
+    market_cap = Column(Float, nullable=True)
+    currency = Column(String(3), default="AUD", nullable=False)
+    timestamp = Column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+    
+    # Relationships
+    stock = relationship("Stock")
