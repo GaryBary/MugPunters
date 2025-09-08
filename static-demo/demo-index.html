@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mug Punters Investment Research Platform - Demo Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        .text-gradient {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .demo-card {
+            transition: all 0.3s ease;
+        }
+        .demo-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .feature-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold text-gradient">Mug Punters Investment Research Platform</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="feature-badge">DEMO MODE</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                Investment Research Platform
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">
+                Professional-grade ASX market analysis and investment recommendations
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm">
+                <span class="bg-white/20 px-4 py-2 rounded-full">📊 Technical Analysis</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full">📈 Market Data</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full">🎯 Risk Assessment</span>
+                <span class="bg-white/20 px-4 py-2 rounded-full">📋 Portfolio Management</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Demo Cards -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Explore the Platform</h2>
+            <p class="text-lg text-gray-600">Click on any demo to experience the full capabilities</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Main Dashboard -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                    <i data-lucide="home" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Main Dashboard</h3>
+                    <p class="text-gray-600 mb-4">Overview dashboard with market data, portfolio stats, and recent reports.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Market Overview</span>
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Portfolio Stats</span>
+                        <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Recent Reports</span>
+                    </div>
+                    <a href="index.html" class="block w-full bg-blue-600 text-white text-center py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                        View Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Investment Dashboard -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                    <i data-lucide="trending-up" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Investment Dashboard</h3>
+                    <p class="text-gray-600 mb-4">Advanced React-based dashboard with interactive charts and analysis tools.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">React Charts</span>
+                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Interactive</span>
+                        <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Real-time</span>
+                    </div>
+                    <a href="investment-dashboard-demo.html" class="block w-full bg-purple-600 text-white text-center py-3 rounded-lg font-medium hover:bg-purple-700 transition-colors">
+                        View Investment Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Analysis Engine -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                    <i data-lucide="calculator" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Analysis Engine</h3>
+                    <p class="text-gray-600 mb-4">Stock analysis and position sizing calculator with mathematical formulas.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Technical Analysis</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Position Sizing</span>
+                        <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Risk Management</span>
+                    </div>
+                    <a href="analysis-demo.html" class="block w-full bg-green-600 text-white text-center py-3 rounded-lg font-medium hover:bg-green-700 transition-colors">
+                        View Analysis Engine
+                    </a>
+                </div>
+            </div>
+
+            <!-- Market Data -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                    <i data-lucide="bar-chart-3" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Market Data</h3>
+                    <p class="text-gray-600 mb-4">Live market data integration with technical analysis and historical data.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Live Data</span>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Technical Indicators</span>
+                        <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Historical</span>
+                    </div>
+                    <a href="market-data-demo.html" class="block w-full bg-orange-600 text-white text-center py-3 rounded-lg font-medium hover:bg-orange-700 transition-colors">
+                        View Market Data
+                    </a>
+                </div>
+            </div>
+
+            <!-- Report History -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center">
+                    <i data-lucide="file-text" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Report History</h3>
+                    <p class="text-gray-600 mb-4">Track and compare analysis performance with accuracy scoring.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-indigo-100 text-indigo-800 px-2 py-1 rounded">Performance Tracking</span>
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Accuracy Scoring</span>
+                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Re-evaluation</span>
+                    </div>
+                    <a href="report-history-demo.html" class="block w-full bg-indigo-600 text-white text-center py-3 rounded-lg font-medium hover:bg-indigo-700 transition-colors">
+                        View Report History
+                    </a>
+                </div>
+            </div>
+
+            <!-- Simple Dashboard -->
+            <div class="demo-card bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+                <div class="h-48 bg-gradient-to-br from-teal-500 to-teal-600 flex items-center justify-center">
+                    <i data-lucide="layout" class="h-16 w-16 text-white"></i>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Simple Dashboard</h3>
+                    <p class="text-gray-600 mb-4">Clean, simple dashboard interface with tabbed navigation.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="text-xs bg-teal-100 text-teal-800 px-2 py-1 rounded">Clean UI</span>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Tabbed Navigation</span>
+                        <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded">Responsive</span>
+                    </div>
+                    <a href="simple-dashboard-demo.html" class="block w-full bg-teal-600 text-white text-center py-3 rounded-lg font-medium hover:bg-teal-700 transition-colors">
+                        View Simple Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="mt-20 bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Platform Features</h2>
+                <p class="text-lg text-gray-600">Comprehensive investment research and analysis tools</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="trending-up" class="h-8 w-8 text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Technical Analysis</h3>
+                    <p class="text-sm text-gray-600">RSI, MACD, moving averages, and trend analysis</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="calculator" class="h-8 w-8 text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Fundamental Analysis</h3>
+                    <p class="text-sm text-gray-600">P/E ratios, market cap, dividend yield analysis</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield" class="h-8 w-8 text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Risk Assessment</h3>
+                    <p class="text-sm text-gray-600">Volatility, beta, and comprehensive risk scoring</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="target" class="h-8 w-8 text-orange-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 mb-2">Smart Recommendations</h3>
+                    <p class="text-sm text-gray-600">AI-powered buy/sell/hold signals</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Notice -->
+        <div class="mt-12 bg-blue-50 border border-blue-200 rounded-xl p-6">
+            <div class="flex items-start">
+                <i data-lucide="info" class="h-6 w-6 text-blue-600 mr-3 mt-1"></i>
+                <div>
+                    <h3 class="text-lg font-medium text-blue-900 mb-2">Demo Mode</h3>
+                    <p class="text-blue-700 mb-4">
+                        This is a static demo showcasing the Mug Punters Investment Research Platform. 
+                        All data is mock data for demonstration purposes. The full application includes 
+                        real-time ASX data, live portfolio tracking, and comprehensive investment analysis tools.
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="https://github.com/your-username/your-repo" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
+                            View Source Code
+                        </a>
+                        <button onclick="showSetupInstructions()" class="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-200">
+                            Setup Instructions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-gray-400">
+                © 2024 Mug Punters Investment Research Platform. Professional-grade investment analysis tools.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        function showSetupInstructions() {
+            alert(`🚀 Mug Punters Investment Research Platform Setup
+
+📋 Prerequisites:
+• Node.js 18+ (for frontend)
+• Python 3.11+ (for backend)
+
+🛠️ Quick Start:
+1. Clone the repository
+2. Run: run-local.bat (Windows) or start.sh (Linux/Mac)
+3. Or manually:
+   - Backend: cd backend && python -m venv venv && venv\\Scripts\\activate && pip install -r requirements.txt && uvicorn app.main:app --reload
+   - Frontend: cd frontend && npm install && npm start
+
+🌐 Access:
+• Frontend: http://localhost:3000
+• Backend API: http://localhost:8000
+• API Docs: http://localhost:8000/docs
+
+📝 Note: This demo shows the UI. The full app includes real-time ASX data, portfolio tracking, and investment analysis tools.`);
+        }
+    </script>
+</body>
+</html>
