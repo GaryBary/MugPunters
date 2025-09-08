@@ -1,0 +1,62 @@
+{
+  "name": "mug-punters-investment-research-frontend",
+  "version": "1.0.0",
+  "description": "Mug Punters investment research platform for ASX analysis",
+  "private": true,
+  "homepage": "https://garybary.github.io/MugPunters",
+  "dependencies": {
+    "@types/node": "^16.18.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4",
+    "axios": "^0.27.0",
+    "recharts": "^2.5.0",
+    "lucide-react": "^0.263.0",
+    "clsx": "^1.2.1",
+    "tailwind-merge": "^1.10.0",
+    "date-fns": "^2.29.0",
+    "react-hook-form": "^7.34.0",
+    "@hookform/resolvers": "^2.9.0",
+    "zod": "^3.19.0",
+    "react-query": "^3.39.0",
+    "react-hot-toast": "^2.4.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.2.0",
+    "autoprefixer": "^10.4.0",
+    "postcss": "^8.4.0",
+    "@types/jest": "^27.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8000"
+}
