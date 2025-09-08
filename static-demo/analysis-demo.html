@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mug Punters - Investment Analysis Engine Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .demo-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        
+        .demo-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        .demo-section h3 {
+            color: #34495e;
+            margin: 20px 0 10px 0;
+            font-size: 1.3em;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .results {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .score {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        
+        .score.excellent { background: #2ecc71; color: white; }
+        .score.good { background: #f39c12; color: white; }
+        .score.average { background: #e67e22; color: white; }
+        .score.poor { background: #e74c3c; color: white; }
+        
+        .recommendation {
+            font-size: 1.5em;
+            font-weight: bold;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .recommendation.strong-buy { background: #2ecc71; color: white; }
+        .recommendation.buy { background: #27ae60; color: white; }
+        .recommendation.hold { background: #f39c12; color: white; }
+        .recommendation.sell { background: #e67e22; color: white; }
+        .recommendation.strong-sell { background: #e74c3c; color: white; }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .api-endpoint {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Mug Punters Investment Analysis Engine</h1>
+            <p>Professional-grade stock analysis with real mathematical formulas</p>
+        </div>
+        
+        <div class="content">
+            <!-- Stock Analysis Demo -->
+            <div class="demo-section">
+                <h2>📊 Stock Analysis Demo</h2>
+                <p>Test the comprehensive stock analysis engine with real scoring formulas:</p>
+                
+                <div class="form-group">
+                    <label for="symbol">Stock Symbol:</label>
+                    <input type="text" id="symbol" value="CBA" placeholder="e.g., CBA, ANZ, BHP">
+                </div>
+                
+                <div class="form-group">
+                    <label for="riskLevel">Risk Level:</label>
+                    <select id="riskLevel">
+                        <option value="conservative">Conservative</option>
+                        <option value="moderate" selected>Moderate</option>
+                        <option value="aggressive">Aggressive</option>
+                    </select>
+                </div>
+                
+                <button onclick="runAnalysis()">🔍 Analyze Stock</button>
+                
+                <div id="analysisResults" class="results" style="display: none;">
+                    <h3>Analysis Results</h3>
+                    <div id="scores"></div>
+                    <div id="recommendation"></div>
+                    <div id="metrics"></div>
+                </div>
+            </div>
+            
+            <!-- Position Sizing Demo -->
+            <div class="demo-section">
+                <h2>💰 Position Sizing Calculator</h2>
+                <p>Calculate optimal position size based on risk management principles:</p>
+                
+                <div class="form-group">
+                    <label for="entryPrice">Entry Price ($):</label>
+                    <input type="number" id="entryPrice" value="100" step="0.01">
+                </div>
+                
+                <div class="form-group">
+                    <label for="stopLoss">Stop Loss Price ($):</label>
+                    <input type="number" id="stopLoss" value="95" step="0.01">
+                </div>
+                
+                <div class="form-group">
+                    <label for="portfolioValue">Portfolio Value ($):</label>
+                    <input type="number" id="portfolioValue" value="100000" step="1000">
+                </div>
+                
+                <button onclick="calculatePosition()">📐 Calculate Position Size</button>
+                
+                <div id="positionResults" class="results" style="display: none;">
+                    <h3>Position Sizing Results</h3>
+                    <div id="positionMetrics"></div>
+                </div>
+            </div>
+            
+            <!-- API Endpoints -->
+            <div class="demo-section">
+                <h2>🔌 API Endpoints</h2>
+                <p>The analysis engine provides these REST API endpoints:</p>
+                
+                <div class="api-endpoint">POST /api/analysis/generate</div>
+                <p>Start comprehensive stock analysis</p>
+                
+                <div class="api-endpoint">GET /api/analysis/{analysis_id}</div>
+                <p>Retrieve analysis results</p>
+                
+                <div class="api-endpoint">POST /api/analysis/position-size</div>
+                <p>Calculate optimal position size</p>
+                
+                <div class="api-endpoint">POST /api/analysis/portfolio-risk</div>
+                <p>Assess portfolio risk</p>
+                
+                <div class="api-endpoint">GET /api/analysis/</div>
+                <p>List user's analyses</p>
+            </div>
+            
+            <!-- Features -->
+            <div class="demo-section">
+                <h2>🚀 Key Features</h2>
+                <ul class="feature-list">
+                    <li><strong>Technical Analysis:</strong> RSI, MACD, trend analysis, volume analysis</li>
+                    <li><strong>Fundamental Analysis:</strong> P/E ratio, market cap, dividend yield, beta analysis</li>
+                    <li><strong>Risk Assessment:</strong> Volatility, beta, market cap risk scoring</li>
+                    <li><strong>Position Sizing:</strong> Kelly criterion-based with risk management</li>
+                    <li><strong>Portfolio Risk:</strong> Comprehensive risk analysis with recommendations</li>
+                    <li><strong>Smart Recommendations:</strong> Risk-adjusted buy/sell/hold signals</li>
+                    <li><strong>Background Processing:</strong> Async analysis with status tracking</li>
+                    <li><strong>Database Integration:</strong> Complete storage with relationships</li>
+                </ul>
+            </div>
+            
+            <!-- Code Examples -->
+            <div class="demo-section">
+                <h2>💻 Code Examples</h2>
+                <h3>Stock Analysis</h3>
+                <div class="code-block">
+# Analyze a stock
+analyzer = StockAnalyzer(db)
+result = await analyzer.analyze_stock("CBA", RiskLevel.MODERATE)
+
+print(f"Overall Score: {result.overall_score}")
+print(f"Recommendation: {result.recommendation.value}")
+print(f"Technical Score: {result.technical_score}")
+print(f"Fundamental Score: {result.fundamental_score}")
+print(f"Risk Score: {result.risk_score}")
+                </div>
+                
+                <h3>Position Sizing</h3>
+                <div class="code-block">
+# Calculate position size
+risk_calc = RiskCalculator()
+position = risk_calc.calculate_position_size(
+    symbol="CBA",
+    entry_price=100.0,
+    stop_loss_price=95.0,
+    portfolio_value=100000,
+    risk_level=RiskLevel.MODERATE
+)
+
+print(f"Recommended shares: {position.recommended_position_size}")
+print(f"Position value: ${position.position_value}")
+print(f"Risk amount: ${position.risk_amount}")
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Mock analysis function (simulates the real analysis engine)
+        function runAnalysis() {
+            const symbol = document.getElementById('symbol').value;
+            const riskLevel = document.getElementById('riskLevel').value;
+            
+            // Simulate analysis results
+            const technicalScore = Math.floor(Math.random() * 40) + 60; // 60-100
+            const fundamentalScore = Math.floor(Math.random() * 40) + 50; // 50-90
+            const riskScore = Math.floor(Math.random() * 30) + 70; // 70-100
+            
+            const weights = {
+                conservative: { technical: 0.3, fundamental: 0.6, risk: 0.1 },
+                moderate: { technical: 0.4, fundamental: 0.4, risk: 0.2 },
+                aggressive: { technical: 0.5, fundamental: 0.3, risk: 0.2 }
+            };
+            
+            const weight = weights[riskLevel];
+            const overallScore = Math.round(
+                technicalScore * weight.technical +
+                fundamentalScore * weight.fundamental +
+                riskScore * weight.risk
+            );
+            
+            let recommendation;
+            if (overallScore >= 78) recommendation = 'STRONG_BUY';
+            else if (overallScore >= 62) recommendation = 'BUY';
+            else if (overallScore >= 42) recommendation = 'HOLD';
+            else if (overallScore >= 28) recommendation = 'SELL';
+            else recommendation = 'STRONG_SELL';
+            
+            // Display results
+            document.getElementById('scores').innerHTML = `
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${technicalScore}</div>
+                        <div class="metric-label">Technical Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${fundamentalScore}</div>
+                        <div class="metric-label">Fundamental Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${riskScore}</div>
+                        <div class="metric-label">Risk Score</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${overallScore}</div>
+                        <div class="metric-label">Overall Score</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('recommendation').innerHTML = `
+                <div class="recommendation ${recommendation.toLowerCase().replace('_', '-')}">
+                    ${recommendation.replace('_', ' ')}
+                </div>
+            `;
+            
+            document.getElementById('metrics').innerHTML = `
+                <h4>Key Metrics for ${symbol}</h4>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">$${(Math.random() * 50 + 50).toFixed(2)}</div>
+                        <div class="metric-label">Current Price</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${(Math.random() * 20 + 10).toFixed(1)}</div>
+                        <div class="metric-label">P/E Ratio</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${(Math.random() * 0.5 + 0.5).toFixed(2)}</div>
+                        <div class="metric-label">Beta</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${(Math.random() * 3 + 2).toFixed(1)}%</div>
+                        <div class="metric-label">Dividend Yield</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('analysisResults').style.display = 'block';
+        }
+        
+        function calculatePosition() {
+            const entryPrice = parseFloat(document.getElementById('entryPrice').value);
+            const stopLoss = parseFloat(document.getElementById('stopLoss').value);
+            const portfolioValue = parseFloat(document.getElementById('portfolioValue').value);
+            
+            const riskPerTrade = 0.02; // 2% for moderate risk
+            const maxRiskAmount = portfolioValue * riskPerTrade;
+            const riskPerShare = Math.abs(entryPrice - stopLoss);
+            const positionSize = Math.floor(maxRiskAmount / riskPerShare);
+            const positionValue = positionSize * entryPrice;
+            const actualRiskAmount = positionSize * riskPerShare;
+            
+            document.getElementById('positionMetrics').innerHTML = `
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">${positionSize}</div>
+                        <div class="metric-label">Recommended Shares</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$${positionValue.toFixed(2)}</div>
+                        <div class="metric-label">Position Value</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$${actualRiskAmount.toFixed(2)}</div>
+                        <div class="metric-label">Risk Amount</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">${(riskPerTrade * 100).toFixed(1)}%</div>
+                        <div class="metric-label">Risk Per Trade</div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('positionResults').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

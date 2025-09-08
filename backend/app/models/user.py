@@ -23,3 +23,8 @@ class User(Base):
     investment_reports = relationship("InvestmentReport", back_populates="user")
     watchlists = relationship("Watchlist", back_populates="user")
     portfolios = relationship("Portfolio", back_populates="user")
+    stock_analyses = relationship("StockAnalysis", back_populates="user")
+    position_sizing = relationship("PositionSizing", back_populates="user")
+    portfolio_risk_assessments = relationship("PortfolioRiskAssessment", back_populates="user")
+    analysis_alerts = relationship("AnalysisAlert", back_populates="user")
+    analysis_templates = relationship("AnalysisTemplate", back_populates="user")

@@ -207,3 +207,132 @@ export interface MarketOverview {
   top_losers: StockPrice[];
   most_active: StockPrice[];
 }
+
+// Report Tracking Types
+export interface ReportPerformance {
+  report_id: string;
+  stock_symbol: string;
+  original_price: number;
+  current_price: number;
+  performance_pct: number;
+  predicted_return?: number;
+  actual_return: number;
+  accuracy_score?: number;
+  days_since_analysis?: number;
+  last_updated: string;
+}
+
+export interface AnalysisReport {
+  id: string;
+  user_id: string;
+  stock_symbol: string;
+  risk_level: 'conservative' | 'moderate' | 'aggressive';
+  timeframe: string;
+  parameters: {
+    technical_indicators: string[];
+    fundamental_metrics: string[];
+    risk_factors: string[];
+  };
+  results: {
+    technical_score: number;
+    fundamental_score: number;
+    risk_score: number;
+    overall_score: number;
+    recommendation: 'strong_buy' | 'buy' | 'hold' | 'sell' | 'strong_sell';
+    confidence: number;
+    target_price: number;
+    key_metrics: Record<string, any>;
+  };
+  created_at: string;
+  last_updated: string;
+  performance?: ReportPerformance;
+}
+
+export interface ReEvaluationResponse {
+  report_id: string;
+  stock_symbol: string;
+  original_analysis_date: string;
+  re_evaluation_date: string;
+  original_price: number;
+  current_price: number;
+  performance_pct: number;
+  predicted_return?: number;
+  actual_return: number;
+  accuracy_score?: number;
+  days_since_analysis: number;
+  original_recommendation?: string;
+  original_confidence?: number;
+  original_target_price?: number;
+  performance_summary: string;
+}
+
+export interface PerformanceMetrics {
+  report_id: string;
+  stock_symbol: string;
+  analysis_date: string;
+  last_updated: string;
+  price_movement: {
+    original_price: number;
+    current_price: number;
+    price_change: number;
+    price_change_pct: number;
+  };
+  return_analysis: {
+    predicted_return?: number;
+    actual_return: number;
+    return_difference: number;
+    accuracy_score?: number;
+  };
+  time_analysis: {
+    days_since_analysis?: number;
+    analysis_timeframe: string;
+    risk_level: string;
+  };
+  recommendation_accuracy: {
+    recommendation: string;
+    was_correct: boolean;
+    performance: number;
+    confidence: number;
+  };
+  performance_grade: string;
+  benchmark_comparison: {
+    benchmark_performance: number;
+    outperformance: number;
+    benchmark_name: string;
+  };
+}
+
+export interface PerformanceSummary {
+  total_reports: number;
+  average_accuracy: number;
+  total_performance: number;
+  best_performer?: {
+    symbol: string;
+    performance: number;
+    report_id: string;
+  };
+  worst_performer?: {
+    symbol: string;
+    performance: number;
+    report_id: string;
+  };
+  recommendation_accuracy: Record<string, {
+    total: number;
+    positive: number;
+    accuracy: number;
+  }>;
+  performance_distribution: {
+    excellent: number;
+    good: number;
+    neutral: number;
+    poor: number;
+    terrible: number;
+  };
+}
+
+export interface ReportListResponse {
+  reports: AnalysisReport[];
+  total: number;
+  skip: number;
+  limit: number;
+}
